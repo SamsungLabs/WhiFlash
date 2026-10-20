@@ -1,0 +1,39 @@
+{
+  "_comment": "latency / switching-cost profile consumed by OracleRouter (--whiflash-oracle-router-utility-based)",
+  "hardware": "A6000",
+  "profiles": [
+    {
+      "target_model": "Qwen/Qwen3-8B",
+      "per_round_latency_seconds": {
+        "eagle3": 0.067,
+        "dflash": 0.060
+      },
+      "switching_cost_seconds": {
+        "eagle3->dflash": 0.0,
+        "dflash->eagle3": 0.0028
+      }
+    },
+    {
+      "target_model": "meta-llama/Llama-3.1-8B-Instruct",
+      "per_round_latency_seconds": {
+        "eagle3": 0.064,
+        "dflash": 0.054
+      },
+      "switching_cost_seconds": {
+        "eagle3->dflash": 0.0,
+        "dflash->eagle3": 0.0028
+      }
+    },
+    {
+      "target_model": "Qwen/Qwen3-4B",
+      "per_round_latency_seconds": {
+        "eagle3": 0.071,
+        "dflash": 0.057
+      },
+      "switching_cost_seconds": {
+        "eagle3->dflash": 0.0,
+        "dflash->eagle3": 0.0028
+      }
+    }
+  ]
+}

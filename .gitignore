@@ -1,0 +1,32 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv
+
+# Project-specific
+.vscode
+.DS_Store
+jobs/
+wandb/
+logs/
+debug*
+output/
+
+# Benchmark / profiling outputs
+results/
+
+# Model checkpoints (safeguard against accidental commits)
+*.pt
+*.pth
+*.bin
+*.safetensors
+
+# Auto-built warmup corpus (data/warmup_corpus.py)
+assets/warmup_corpus.txt

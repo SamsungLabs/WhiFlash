@@ -1,0 +1,7 @@
+disable=SC2043 # SC2043 checks "This loop will only ever run once for a constant value. Did you perhaps mean to loop over dir/*, $var or $(cmd)?"
+disable=SC2027 # The surrounding quotes actually unquote this. Remove or escape them.
+disable=SC2086 # Double quote to prevent globbing and word splitting.
+disable=SC2034 # Variables set here are read by the scripts that source this one.
+disable=SC1090 # Non-constant source paths (sourced script is chosen at runtime).
+disable=SC1091 # Sourced files are not followed when shellcheck runs per-file.
+disable=SC2016 # Literal backticks in single quotes are intended (markdown output).

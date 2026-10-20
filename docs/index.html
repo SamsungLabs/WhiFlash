@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="WhiFlash: Accelerating Speculative Decoding with Token-Level Cross-Paradigm Routing.">
+  <meta name="keywords"
+    content="WhiFlash, LLM, Acceleration, Speculative Decoding, Diffusion Parallel Decoding, Autoregressive Decoding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WhiFlash</title>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+</head>
+<body>
+
+
+  <!-- Title, Authors, Links -->
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+
+            <img src="./static/images/logo/whiflash_logo_light.png" alt="WhiFlash logo"
+              style="height: 160px; margin-bottom: 0px;">
+
+            <!-- <h1 class="title is-1 publication-title">
+              <span class="hprune">WhiFlash</span>
+            </h1> -->
+            <h2 class="title is-3 publication-subtitle">
+              Accelerating Speculative Decoding with Token-Level Cross-Paradigm Routing
+            </h2>
+
+            <p style="color: #aa0404; font-size: 1.7rem; font-weight: bold; text-align: center; margin: 12px 0;">EMNLP
+              2026</p>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><a href="https://theyoungkwon.github.io/">Young D. Kwon</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://scholar.google.com/citations?user=c_374bAAAAAJ">Miles Williams</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://ruihuili.github.io/">Rui Li</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://alk15.github.io/home/">Alexandros Kouris</a><sup>1</sup>,</span>
+              <span class="author-block"><a href="https://steliosven10.github.io/">Stylianos I. Venieris</a><sup>1</sup></span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>Samsung AI Center-Cambridge, UK</span>
+            </div>
+
+            <!-- <div class="is-size-6 publication-authors">
+              <span class="author-block"><sup>*</sup>Equal contribution</span>
+            </div> -->
+
+            <div class="institution-logos">
+              <img src="./static/images/logo/samsung_research_logo.png" alt="Samsung AI Center"
+                style="height: 60px; width: auto;">
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                <a href="https://arxiv.org/pdf/2606.07710" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                <span>Paper</span>
+                </a>
+                </span>
+                <span class="link-block">
+                <a href="https://arxiv.org/abs/2606.07710" class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                <span>arXiv</span>
+                </a>
+                </span>
+                <span class="link-block">
+                <a href="https://github.com/SamsungLabs/WhiFlash"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                <span>Code</span>
+                </a>
+                </span>
+                <span class="link-block">
+                <a href="https://github.com/SamsungLabs/WhiFlash/blob/main/LICENSE"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-scale-balanced"></i></span>
+                <span>License</span>
+                </a>
+                </span>
+              </div>
+              <!-- Released checkpoints get their own row (mirrors the README badge layout). -->
+              <div class="publication-links">
+                <span class="link-block">
+                <a href="https://huggingface.co/collections/WhiFlash/specvocab"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">🤗</span>
+                <span>Draft Models</span>
+                </a>
+                </span>
+                <span class="link-block">
+                <a href="https://huggingface.co/collections/WhiFlash/whiflash-neural"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">🤗</span>
+                <span>Router Models</span>
+                </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About / Abstract -->
+  <section class="section" id="about">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">💡 About <span class="hprune">WhiFlash</span></h2>
+          <div class="content has-text-justified">
+            <p>
+              <span class="hprune">WhiFlash</span> is the first <strong>cross-paradigm</strong> speculative decoding
+              method:
+              a lightweight <strong>token-level router</strong> that, at every decoding step, dynamically
+              chooses between an <strong>autoregressive drafter</strong> (<a
+                href="https://github.com/SafeAILab/EAGLE">EAGLE-3</a>)
+              and a <strong>diffusion-based parallel drafter</strong> (<a
+                href="https://github.com/z-lab/dflash">DFlash</a>).
+              By capitalising on the complementary strengths of these fundamentally distinct drafting architectures,
+              <span class="hprune">WhiFlash</span> reaches higher acceptance lengths than either standalone drafter,
+              yielding throughput gains of up to <strong>69.6% over EAGLE-3</strong> and
+              <strong>37.3% over DFlash</strong>.
+            </p>
+          </div>
+
+          <img src="./static/images/figures/whiflash_overview.svg" alt="Figure 1: WhiFlash Overview"
+            class="inserted-image">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- About / Abstract -->
+  <section class="section" style="background-color: #f9f9f9;" id="insight">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">🔬 Insight</h2>
+          <div class="content has-text-justified">
+            <p>
+              State-of-the-art speculative decoding relies on <em>static</em> drafting paradigms: autoregressive (AR)
+              drafters excel at open-ended chat and reasoning, while diffusion-based parallel drafters dominate
+              highly structured outputs such as math and coding. We empirically find that the better paradigm changes
+              <strong>within a single sequence</strong> — drafting accuracy fluctuates aggressively from token to token,
+              and coarse-grained, task-level routing leaves unrealised speedups.
+            </p>
+          </div>
+
+          <img src="./static/images/figures/whiflash_motivation.svg" alt="Figure 2: WhiFlash Motivation"
+            class="inserted-image">
+
+          <div class="content has-text-justified">
+            <p>
+              <span class="hprune">WhiFlash</span> addresses this volatility with a fine-grained controller that routes
+              each decoding step to the
+              highest-performing drafter at run time, using either a lightweight entropy-based or a learned neural
+              router.
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Method Overview -->
+  <section class="section" id="method">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">🔍 Method Overview</h2>
+          <div class="content has-text-justified">
+
+            <p>
+              At each speculation round, the <strong>target model</strong> produces the next-token distribution and
+              hidden states.
+              A <strong>token-level router</strong> takes these features as inputs and selects which drafter to run next:
+            </p>
+
+            <ul>
+              <li><strong><span class="hprune">WhiFlash-Entropy</span></strong>: A runtime-informed policy that routes
+                based on the target's next-token entropy
+                (low entropy: diffusion parallel drafter & high entropy: AR drafter). Calibrated on a small held-out
+                set; no training required.</li>
+              <li><strong><span class="hprune">WhiFlash-Neural</span></strong>: A lightweight 2-layer MLP that takes the
+                target's final hidden state as inputs and predicts
+                the expected acceptance length gain of switching drafters, enabling hardware-aware routing decisions by
+                using different thresholds.</li>
+            </ul>
+
+            <p>
+              We develop two system optimisations to reduce the cost of switching between drafters, leading to the
+              higher speedup:
+            </p>
+
+            <ul>
+              <li><strong>Lazy Catch-up</strong>: The inactive drafter's KV cache is updated in a lazy manner with a
+                single batched prefill only when a switch is committed rather than being updated at every round.</li>
+              <li><strong>KV-only Prefill</strong>: This computes only the attention/KV for the backlog tokens, skipping
+                the MLP and LM head.</li>
+            </ul>
+
+            <p>
+              Together, these keep the switching overhead <strong>below 7% of per-round latency</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Results -->
+  <section class="section" style="background-color: #f9f9f9;" id="Results">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">📈 Results</h2>
+          <div class="content has-text-justified">
+            <p>
+              <span class="hprune">WhiFlash-Neural</span>'s per-category <strong>throughput gain</strong> over each
+              standalone drafter, based on NVIDIA H100 GPU.
+            </p>
+          </div>
+
+          <div style="max-width: 680px; margin: 0 auto; overflow-x: auto;">
+            <table class="table is-bordered has-text-centered"
+              style="width: 100%; margin: 0 auto; border-collapse: separate; border-spacing: 0;">
+              <thead>
+                <tr style="background-color: #eef2f6;">
+                  <th rowspan="2" style="vertical-align: middle; text-align: left; background-color: #e6ebf1;">Category
+                  </th>
+                  <th colspan="2" style="border-left: 2px solid #c4cfdb; text-align: center;">Qwen3-4B</th>
+                  <th colspan="2" style="border-left: 2px solid #c4cfdb; text-align: center;">Qwen3-8B</th>
+                </tr>
+                <tr style="background-color: #f4f7fa; font-weight: 600;">
+                  <th style="border-left: 2px solid #c4cfdb;">vs. EAGLE-3</th>
+                  <th>vs. DFlash</th>
+                  <th style="border-left: 2px solid #c4cfdb;">vs. EAGLE-3</th>
+                  <th>vs. DFlash</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="text-align: left; font-weight: 600; background-color: #f8fafc;">Chat</td>
+                  <td style="color: #2f8f4e; border-left: 2px solid #c4cfdb;">+7.8%</td>
+                  <td style="font-weight: 700; color: #1b7a3d; background-color: #e9f7ef;">+33.7%</td>
+                  <td style="color: #2f8f4e; border-left: 2px solid #c4cfdb;">+7.0%</td>
+                  <td style="font-weight: 700; color: #1b7a3d; background-color: #e9f7ef;">+37.3%</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left; font-weight: 600; background-color: #f8fafc;">Math</td>
+                  <td
+                    style="font-weight: 700; color: #1b7a3d; background-color: #e9f7ef; border-left: 2px solid #c4cfdb;">
+                    +69.6%</td>
+                  <td style="color: #2f8f4e;">+4.8%</td>
+                  <td
+                    style="font-weight: 700; color: #1b7a3d; background-color: #e9f7ef; border-left: 2px solid #c4cfdb;">
+                    +69.3%</td>
+                  <td style="color: #2f8f4e;">+1.3%</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left; font-weight: 600; background-color: #f8fafc;">Coding</td>
+                  <td
+                    style="font-weight: 700; color: #1b7a3d; background-color: #e9f7ef; border-left: 2px solid #c4cfdb;">
+                    +63.4%</td>
+                  <td style="color: #2f8f4e;">+6.5%</td>
+                  <td
+                    style="font-weight: 700; color: #1b7a3d; background-color: #e9f7ef; border-left: 2px solid #c4cfdb;">
+                    +61.0%</td>
+                  <td style="color: #2f8f4e;">+5.2%</td>
+                </tr>
+                <tr>
+                  <td style="text-align: left; font-weight: 600; background-color: #f8fafc;">Agentic</td>
+                  <td
+                    style="font-weight: 700; color: #1b7a3d; background-color: #e9f7ef; border-left: 2px solid #c4cfdb;">
+                    +19.9%</td>
+                  <td style="color: #2f8f4e;">+3.4%</td>
+                  <td
+                    style="font-weight: 700; color: #1b7a3d; background-color: #e9f7ef; border-left: 2px solid #c4cfdb;">
+                    +16.8%</td>
+                  <td style="color: #2f8f4e;">+6.1%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="content has-text-justified" style="margin-top: 1rem;">
+            <p>
+              📄 Full results of acceptance length and speedup tables for all models are in the
+              <a href="https://arxiv.org/pdf/2606.07710">paper</a>.
+            </p>
+          </div>
+
+          <h3 class="title is-4" style="margin-top: 2.5rem;">DDTree (post-paper)</h3>
+          <div class="content has-text-justified">
+            <p>
+              <a href="https://github.com/liranringel/ddtree">DDTree</a> was added after the paper. It is a stronger
+              diffusion baseline than DFlash: same draft model, but candidates are verified as a tree rather than a
+              linear block. <strong>Speedup</strong> over plain autoregressive decoding of every standalone drafter and
+              of <span class="hprune">WhiFlash</span>-Neural with each
+              <a href="https://github.com/SamsungLabs/WhiFlash#drafter-pair">drafter pair</a>
+              (<code>df</code> = DFlash, <code>ddt</code> = DDTree, <code>e3</code> = EAGLE-3, <code>bN</code> = DDTree
+              tree budget <code>N</code>):
+            </p>
+          </div>
+
+          <div style="max-width: 760px; margin: 0 auto; overflow-x: auto;">
+            <table class="table is-bordered has-text-centered ddtree-table">
+                <thead>
+                  <tr><th>Model</th><th class="method">Method</th><th>Chat</th><th>Math</th><th>Coding</th><th>Agentic</th><th>Avg.</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="group-start"><td class="model" rowspan="7">Qwen3-4B</td><td class="method">EAGLE-3</td><td>2.66×</td><td>2.97×</td><td>2.89×</td><td>2.13×</td><td>2.66×</td></tr>
+                  <tr><td class="method">DFlash</td><td>2.11×</td><td>5.04×</td><td>4.49×</td><td>2.31×</td><td>3.48×</td></tr>
+                  <tr><td class="method">DDTree (b32)</td><td>2.77×</td><td>5.70×</td><td>5.45×</td><td>2.95×</td><td>4.22×</td></tr>
+                  <tr><td class="method">DDTree (b128)</td><td>3.18×</td><td>6.42×</td><td>5.99×</td><td>3.25×</td><td>4.71×</td></tr>
+                  <tr class="whiflash"><td class="method"><span class="hprune">WhiFlash</span>-Neural (df-e3)</td><td>2.83×</td><td>5.11×</td><td>4.52×</td><td>2.45×</td><td>3.73×</td></tr>
+                  <tr class="whiflash"><td class="method"><span class="hprune">WhiFlash</span>-Neural (ddt-e3-b32)</td><td>3.03×</td><td>5.98×</td><td>5.58×</td><td>2.99×</td><td>4.40×</td></tr>
+                  <tr class="whiflash"><td class="method"><span class="hprune">WhiFlash</span>-Neural (ddt-e3-b128)</td><td class="best">3.33×</td><td class="best">6.59×</td><td class="best">6.24×</td><td class="best">3.26×</td><td class="best">4.86×</td></tr>
+                  <tr class="group-start"><td class="model" rowspan="7">Qwen3-8B</td><td class="method">EAGLE-3</td><td>2.69×</td><td>3.09×</td><td>2.88×</td><td>2.38×</td><td>2.76×</td></tr>
+                  <tr><td class="method">DFlash</td><td>2.04×</td><td>5.14×</td><td>4.46×</td><td>2.60×</td><td>3.56×</td></tr>
+                  <tr><td class="method">DDTree (b32)</td><td>2.74×</td><td>5.75×</td><td>5.46×</td><td>3.36×</td><td>4.33×</td></tr>
+                  <tr><td class="method">DDTree (b128)</td><td>3.05×</td><td>6.56×</td><td class="best">6.12×</td><td>3.58×</td><td>4.83×</td></tr>
+                  <tr class="whiflash"><td class="method"><span class="hprune">WhiFlash</span>-Neural (df-e3)</td><td>2.85×</td><td>5.04×</td><td>4.52×</td><td>2.73×</td><td>3.79×</td></tr>
+                  <tr class="whiflash"><td class="method"><span class="hprune">WhiFlash</span>-Neural (ddt-e3-b32)</td><td>3.06×</td><td>5.94×</td><td>5.47×</td><td>3.37×</td><td>4.46×</td></tr>
+                  <tr class="whiflash"><td class="method"><span class="hprune">WhiFlash</span>-Neural (ddt-e3-b128)</td><td class="best">3.27×</td><td class="best">6.62×</td><td>6.10×</td><td class="best">3.71×</td><td class="best">4.93×</td></tr>
+                </tbody>
+            </table>
+          </div>
+
+          <div class="content has-text-justified" style="margin-top: 1rem;">
+            <p>
+              <em>Note: These results with DDTree are preliminary and come from a separate run; they are not comparable
+                cell-to-cell with the paper's tables.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- BibTeX -->
+  <section class="section" id="bibtex">
+    <div class="container is-max-desktop content">
+      <h2 class="title">BibTeX</h2>
+      <pre><code>@misc{kwon2026whiflash,
+        title={{WhiFlash: Accelerating Speculative Decoding with Token-Level Cross-Paradigm Routing}},
+        author={Young D. Kwon and Miles Williams and Rui Li and Alexandros Kouris and Stylianos I. Venieris},
+        year={2026},
+        eprint={2606.07710},
+        archivePrefix={arXiv},
+        primaryClass={cs.LG},
+        url={https://arxiv.org/abs/2606.07710},
+      }</code></pre>
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <a class="icon-link" href="https://arxiv.org/pdf/2606.07710" aria-label="Paper PDF">
+          <i class="fas fa-file-pdf"></i>
+        </a>
+        <a class="icon-link" href="https://github.com/SamsungLabs/WhiFlash" aria-label="GitHub">
+          <i class="fab fa-github"></i>
+        </a>
+      </div>
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content has-text-centered">
+            <p>
+              This website is licensed under a
+              <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a> License.
+              Template borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+/* Base */
+body {
+  font-family: 'Noto Sans', sans-serif;
+}
+
+/* Project name styling */
+.hprune {
+  font-variant: small-caps;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* Hero section */
+.hero .hero-body {
+  padding-bottom: 2rem;
+}
+
+.publication-title {
+  font-family: 'Google Sans', sans-serif;
+  font-size: 2.8rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.publication-subtitle {
+  font-family: 'Google Sans', sans-serif;
+  color: #555;
+  font-weight: 400;
+  margin-bottom: 1.5rem !important;
+}
+
+.publication-authors {
+  font-family: 'Google Sans', sans-serif;
+}
+
+.publication-authors a {
+  color: hsl(204, 86%, 53%) !important;
+}
+
+.publication-authors a:hover {
+  text-decoration: underline;
+}
+
+.author-block {
+  display: inline-block;
+}
+
+.institution-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin: 1rem 0;
+}
+
+/* Publication links (buttons) */
+.link-block a {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.footer .icon-link {
+  font-size: 25px;
+  color: #000;
+  margin: 0 8px;
+}
+
+.footer .icon-link:hover {
+  color: hsl(204, 86%, 53%);
+}
+
+/* Teaser */
+.teaser .hero-body {
+  padding-top: 0;
+  padding-bottom: 3rem;
+}
+
+.teaser {
+  font-family: 'Google Sans', sans-serif;
+}
+
+/* Teaser 4x2 image grid */
+.teaser-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.teaser-grid__item {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.teaser-grid__item img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.teaser-grid__item img:hover {
+  transform: scale(1.03);
+}
+
+.placeholder-image--teaser {
+  width: 100%;
+  aspect-ratio: 1;
+}
+
+/* Carousel (KOALA-style cards with captions) */
+.results-carousel {
+  overflow: hidden;
+}
+
+.results-carousel .card {
+  margin: 5px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.results-carousel .card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.results-carousel .card-image img:hover {
+  transform: scale(1.03);
+}
+
+.results-carousel .card-content {
+  font-size: 0.85rem;
+  color: #555;
+  padding: 0.6rem 0.8rem;
+  font-style: italic;
+}
+
+/* Placeholder images (for TODOs) */
+.placeholder-image {
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.placeholder-image--hero {
+  width: 100%;
+  height: 400px;
+  margin-bottom: 1.5rem;
+}
+
+.placeholder-image--carousel {
+  width: 100%;
+  height: 300px;
+  font-size: 14px;
+}
+
+.placeholder-image--wide {
+  width: 100%;
+  height: 350px;
+  margin-top: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+.placeholder-image--comparison {
+  width: 100%;
+  height: 280px;
+}
+
+.placeholder-label {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 0.25rem;
+}
+
+.placeholder-hint {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* Section alternating backgrounds */
+.section {
+  padding: 3rem 1.5rem;
+}
+
+/* About section - key techniques list */
+.content ul li {
+  margin-bottom: 0.5rem;
+}
+
+/* Comparison grid: 5 images + 2 dividers */
+.comparison-grid {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.comparison-grid--header {
+  margin-bottom: 1rem;
+}
+
+.comparison-grid__cell {
+  flex: 1;
+  min-width: 0;
+}
+
+.comparison-grid__ref {
+  flex: 1;
+  opacity: 0.85;
+}
+
+.comparison-grid__divider {
+  width: 2px;
+  background: #d0d0d0;
+  border-radius: 1px;
+  margin: 0 4px;
+  align-self: stretch;
+}
+
+/* Comparison cards */
+.comparison-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease;
+  height: 100%;
+  display: flex;
+}
+
+.comparison-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  transform: scale(1.03);
+}
+
+.comparison-card.highlight-card {
+  border: 2px solid #1a73e8;
+}
+
+.comparison-card img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.comparison-label {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  text-align: center;
+  padding: 0.5rem 0.25rem;
+  margin: 0;
+  font-size: 1.25rem;
+  color: #333;
+  line-height: 1.3;
+}
+
+.comparison-sublabel {
+  font-weight: 400;
+  font-size: 1.0rem;
+  color: #888;
+}
+
+.comparison-label.highlight {
+  color: #1a73e8;
+}
+
+.comparison-prompt {
+  text-align: center;
+  font-style: italic;
+  color: #666;
+  font-size: 0.95rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
+}
+
+/* Results tables */
+.results-table {
+  font-size: 0.95rem;
+}
+
+.results-table thead th {
+  font-family: 'Google Sans', sans-serif;
+  font-weight: 600;
+  border-bottom: 2px solid #333;
+  color: #333;
+}
+
+.results-table tbody tr.is-selected {
+  background-color: #e8f4fd !important;
+  color: #333 !important;
+}
+
+.results-table tbody tr.is-selected td {
+  color: #333 !important;
+  border-color: #d0e8f5 !important;
+}
+
+/* Post-paper DDTree speedup table (docs/index.html, Results section) */
+.ddtree-table {
+  width: 100%;
+  margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.ddtree-table thead tr {
+  background-color: #eef2f6;
+}
+
+.ddtree-table th:nth-child(-n+2) {
+  text-align: left;
+  vertical-align: middle;
+  background-color: #e6ebf1;
+}
+
+.ddtree-table td.model {
+  text-align: left;
+  vertical-align: middle;
+  font-weight: 600;
+  background-color: #e6ebf1;
+}
+
+.ddtree-table td.method {
+  text-align: left;
+  background-color: #f8fafc;
+}
+
+.ddtree-table tr.whiflash td.method {
+  font-weight: 600;
+}
+
+/* Vertical divider between the label columns and the speedup columns. */
+.ddtree-table th.method + th,
+.ddtree-table td.method + td {
+  border-left: 2px solid #c4cfdb;
+}
+
+/* Horizontal divider between model groups. */
+.ddtree-table tbody tr.group-start td {
+  border-top: 2px solid #c4cfdb;
+}
+
+.ddtree-table td.best {
+  font-weight: 700;
+  color: #1b7a3d;
+  background-color: #e9f7ef;
+}
+
+/* Inserted figures (for method diagrams, performance figures) */
+.inserted-figure {
+  max-width: 100%;
+  margin: 1.5rem auto;
+  text-align: center;
+}
+
+.inserted-image {
+  max-width: 100%;
+  margin: 0 auto;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.figure-caption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* BibTeX */
+#bibtex pre {
+  background: #2d2d2d;
+  color: #f8f8f2;
+  border-radius: 10px;
+  padding: 1.5rem;
+  overflow-x: auto;
+}
+
+#bibtex code {
+  background: transparent;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+/* Footer */
+.footer {
+  padding: 2rem 1.5rem;
+}
